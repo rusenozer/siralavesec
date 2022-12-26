@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p>1'den 99'a kadar olan sayıları for döngüsü ile yan yana <button id="sirala" onclick="sirala()">Sırala</button> </p>
+    <div>
+        <button id ="rastgeleBtn" onclick="rastgeleSec()" disabled>Rastgele Sayı Seç</button>
+    </div>
+    <div id="numbers">
+
+    </div>
+</body>
+
+<script>
+    const rastgeleBtn = document.getElementById('rastgeleBtn')
+    const siralaBtn = document.getElementById('sirala');
+    const container = document.getElementById('numbers');
+    const NUMBER_COUNT = 100;
+    const numbers = [];
+    
+    function sirala(){
+        rastgeleBtn.disabled = false;
+
+        for (let i = 1; i < NUMBER_COUNT; i++) {
+                numbers.push(i);
+                if(i % 10 === 1){
+                    container.innerHTML += `<br><br>`
+                }
+
+                container.innerHTML += `<span id="number${i}"> ${i} <span>`
+        }
+
+        siralaBtn.disabled = true;
+
+
+    }
+
+    function rastgeleSec(){
+        siralaBtn.disabled=true;
+        const randomNumber = Math.floor(Math.random()*NUMBER_COUNT)
+        numbers.splice(randomNumber,1)    
+        const span = document.getElementById(`number${randomNumber}`)
+        span.style.color="red";
+        span.style.fontWeight = "bold";
+       
+    }
+
+
+</script>
+</html>
